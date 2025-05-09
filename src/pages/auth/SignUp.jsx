@@ -5,8 +5,9 @@ import { Button } from '../../Components/Button';
 import { ToastContainer, toast } from 'react-toastify';
 
 import { useForm } from 'react-hook-form';
-import '../../styles/SignUp.css';
-import { registerAPI } from '../../services/allAPI';
+import styles from '../auth/Signup.module.scss';
+import { registerAPI } from '../../services/authService';
+
 
 
 
@@ -53,73 +54,84 @@ const [formError, setFormError] = useState('');
     toast.success('Google signup clicked (dummy function)');
   };
   return (
-    <div className="sign-up-container">
-    <div className="sign-up-card">
-      <h2 className="title">Create an Account</h2>
+    <div className={styles["sign-up-container"]}>
+  <div className={styles["sign-up-card"]}>
+    <h2 className={styles.title}>Create an Account</h2>
 
-      {formError && <p className="error-message">{formError}</p>}
+    {formError && <p className={styles["error-message"]}>{formError}</p>}
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <Input
-          label="Name"
-          name="username"
-          type="text"
-          placeholder="Enter full name"
-          register={register('username', { required: 'Name is required' })}
-          errors={errors.name?.message}
-        />
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        label="Name"
+        name="username"
+        type="text"
+        placeholder="Enter full name"
+        register={register('username', { required: 'Name is required' })}
+        errors={errors.name?.message}
+      />
 
-        <Input
-          label="Email"
-          name="username"
-          type="email"
-          placeholder="Enter email"
-          register={register('email', {
-            required: 'Email is required',
-            pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email format' },
-          })}
-          errors={errors.email?.message}/>
+      <Input
+        label="Email"
+        name="username"
+        type="email"
+        placeholder="Enter email"
+        register={register('email', {
+          required: 'Email is required',
+          pattern: {
+            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+            message: 'Invalid email format',
+          },
+        })}
+        errors={errors.email?.message}
+      />
 
-        <Input
-          label="Password"
-          name="password"
-          type="password"
-          placeholder="Enter password"
-          register={register('password', {
-            required: 'Password is required',
-            minLength: { value: 6, message: 'Password must be at least 6 characters' },
-          })}
-          errors={errors.password?.message}/>
+      <Input
+        label="Password"
+        name="password"
+        type="password"
+        placeholder="Enter password"
+        register={register('password', {
+          required: 'Password is required',
+          minLength: { value: 6, message: 'Password must be at least 6 characters' },
+        })}
+        errors={errors.password?.message}
+      />
 
-        <Button type="submit" variant="primary" disabled={isSubmitting}>
-          {isSubmitting ? 'Signing Up...' : 'Sign Up'}
-        </Button>
-      </form>
+<Button
+  type="submit"
+  disabled={isSubmitting}
+  className={styles.primary}
+>
+  {isSubmitting ? 'Signing Up...' : 'Sign Up'}
+</Button>
 
-      <div className="divider">
-        <span>or</span>
-      </div>
+    </form>
 
-
-      <Button onClick={handleGoogleSignIn} className="google-button">
-          <img
-            src="https://www.svgrepo.com/show/475656/google-color.svg"
-            alt="Google"
-            className="google-icon"
-          />
-          <span className="google-text">Continue with Google</span>
-        </Button>
-
-      <p className="sign-in-link">
-        Already have an account?{' '}
-        <Link to="/signin" className="sign-in-link-text">
-          Sign in here
-        </Link>
-      </p>
+    <div className={styles.divider}>
+      <span>or</span>
     </div>
 
-      <ToastContainer position="top-center" />
-    </div>
+    <Button onClick={handleGoogleSignIn} className={styles["google-button"]}>
+      <img
+        src="https://www.svgrepo.com/show/475656/google-color.svg"
+        alt="Google"
+        className={styles["google-icon"]}
+      />
+      <span className={styles["google-text"]}>Continue with Google</span>
+    </Button>
+
+    <p className={styles["sign-in-link"]}>
+      Already have an account?{' '}
+      <Link to="/signin" className={styles["sign-in-link-text"]}>
+        Sign in here
+      </Link>
+    </p>
+  </div>
+
+  <ToastContainer position="top-center" />
+</div>
+
+    
   )
 }
 

@@ -5,7 +5,7 @@ import SignIn from './pages/auth/SignIn'
 import SignUp from './pages/auth/SignUp'
 import Dashboard from './pages/dashboard/Dashboard'
 import Layout from './Components/layout/Layout'
-import Approval from './pages/employee/Approval'
+import EmployeeManagement from './pages/employee/EmployeeManagement'
 function App() {
   
   return (
@@ -16,7 +16,7 @@ function App() {
 
       <Route element={<Layout/>} >
     <Route path='/' element={<Dashboard/>}  />
-    <Route  path='/employee' element={<Approval/>}/>
+    <Route  path='/employee' element={<EmployeeManagement/>}/>
     </Route>
      </Routes>
     </>

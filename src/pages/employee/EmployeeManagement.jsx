@@ -1,5 +1,7 @@
 import React from 'react'
-import styles from '../employee/Approval.module.scss';
+import styles from '../employee/Employee.module.scss';
+
+
 
 function Approval() {
     const approvals = [
@@ -8,6 +10,8 @@ function Approval() {
         { date: "27/06/2022", name: "Neha", role: "Nursing Assistant", type: "Paternity Leave", duration: "05 (05-06 Jul)", status: "Rejected" },
       ];
   return (
+    <div>
+     
     <div className={styles.container}>
     <h2 className={styles.title}>Approval</h2>
     <table className={styles.table}>
@@ -40,6 +44,7 @@ function Approval() {
         ))}
       </tbody>
     </table>
+  </div>
   </div>
   )
 }

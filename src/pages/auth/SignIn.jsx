@@ -3,9 +3,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Input } from '../../Components/Input';
 import { Button } from '../../Components/Button';
 import { ToastContainer, toast } from 'react-toastify';
-import '../../styles/Signin.css';
+import styles from '../auth/Signin.module.scss';
 import { useForm } from 'react-hook-form';
-import { loginAPI } from '../../services/allAPI';
+import { loginAPI } from '../../services/authService';
 
 
 function SignIn() {
@@ -47,11 +47,11 @@ function SignIn() {
   };
 
   return (
-    <div className="signin-container">
-      <div className="signin-card">
-        <h2 className="signin-title">Sign In</h2>
+    <div className={styles['signin-container']}>
+      <div className={styles['signin-card']}>
+        <h2 className={styles['signin-title']}>Sign In</h2>
 
-        {loginError && <p className="error-message">{loginError}</p>}
+        {loginError && <p className={styles['error-message']}>{loginError}</p>}
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <Input
@@ -61,7 +61,10 @@ function SignIn() {
             placeholder="Enter email"
             register={register('email', {
               required: 'Email is required',
-              pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: 'Invalid email format' },
+              pattern: {
+                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                message: 'Invalid email format',
+              },
             })}
             errors={errors.email?.message}
           />
@@ -73,37 +76,41 @@ function SignIn() {
             placeholder="Enter password"
             register={register('password', {
               required: 'Password is required',
-              minLength: { value: 6, message: 'Password must be at least 6 characters' },
+              minLength: {
+                value: 6,
+                message: 'Password must be at least 6 characters',
+              },
             })}
-            errors={errors.password?.message}/>
+            errors={errors.password?.message}
+          />
 
-          <div className="signin-options">
-            <label className="keep-signed-in">
+          <div className={styles['signin-options']}>
+            <label className={styles['keep-signed-in']}>
               <input type="checkbox" {...register('keepSignedIn')} /> Keep me signed in
             </label>
-            <Link to='/forgot-password' className="forgot-password-link">
+            <Link to="/forgot-password" className={styles['forgot-password-link']}>
               Forgot Password?
             </Link>
           </div>
 
-          <Button type="submit" variant="primary" disabled={isSubmitting}>
-            {isSubmitting ? 'Logging In...' : 'Login'}
-          </Button>
+          <Button type="submit" disabled={isSubmitting} className={styles.primaryButton}>
+  {isSubmitting ? 'Logging In...' : 'Login'}
+</Button>
         </form>
 
-        <div className="signin-divider">
+        <div className={styles['signin-divider']}>
           <span>or</span>
         </div>
 
-        <p className="signup-text">
+        <p className={styles['signup-text']}>
           Don't have an account?{' '}
-          <Link to='/signup' className="signup-link">
+          <Link to="/signup" className={styles['signup-link']}>
             Create an account
           </Link>
         </p>
       </div>
 
-      <ToastContainer position='top-center' />
+      <ToastContainer position="top-center" />
     </div>
   )
 }

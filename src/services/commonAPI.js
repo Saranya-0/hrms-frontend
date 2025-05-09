@@ -15,6 +15,6 @@ export const commonAPI=async(httpMethod,url,reqBody,reqHeader)=>{
         const response = await axios(reqConfig);
         return response;
       } catch (error) {
-        throw error; // <-- Important: so you can catch it in your component
+        throw error; 
       }
     };

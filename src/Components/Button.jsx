@@ -1,16 +1,13 @@
 import React from 'react';
 
-export const Button = ({ type, variant, onClick, disabled, children, className = '' }) => {
-  const baseClass = 'btn'; 
-  const variantClass = variant === 'primary' ? 'primary' : 'secondary';
-  const disabledClass = disabled ? 'disabled' : '';
-
+export const Button = ({ type = 'button', onClick, disabled, children, className = '' }) => {
   return (
     <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${baseClass} ${variantClass} ${disabledClass} ${className}`.trim()}>
+      className={className}
+    >
       {children}
     </button>
   );
