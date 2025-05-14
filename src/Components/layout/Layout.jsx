@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import Sidebar from '../../Components/Sidebar';
 import Navbar from '../../Components/Navbar';
 import styles from './Layout.module.scss';
+import { Outlet } from 'react-router-dom';
 
-function Layout({ children }) {
+function Layout() {
   const [expanded, setExpanded] = useState(true);
   
 
@@ -13,7 +14,7 @@ function Layout({ children }) {
       <div className={styles.content}>
         <Navbar expanded={expanded} /> 
         <main className={styles.main}>
-          {children}
+          <Outlet/>
         </main>
       </div>
     </div>
